@@ -1,1 +1,5 @@
-export const myPackage = (taco = ''): string => `${taco} from my package`;
+import helpers from './helpers/index.js';
+
+export default {
+  helpers,
+};
