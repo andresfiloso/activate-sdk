@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import * as OriginalJoi from '@hapi/joi';
-import objectId from 'joi-objectid';
+import Joi from '@hapi/joi';
+import joiObjectId from 'joi-objectid';
 
-const Joi = OriginalJoi.extend(objectId);
+joiObjectId.objectId = joiObjectId(Joi);
 
 const idSchema = Joi.object({
   id: Joi.string().length(24).required(),
@@ -25,7 +25,7 @@ const getOrderSchema = Joi.object({
 
 const orderItemSchema = Joi.object({
   key: Joi.string().optional(),
-  product: Joi.objectId().required(),
+  product: joiObjectId.required(),
   quantity: Joi.number().required(),
   price: Joi.number().optional(),
   isWholesaler: Joi.boolean().default(false),
@@ -38,7 +38,7 @@ const orderCartSchema = Joi.object({
 }).required();
 
 const orderDeliverySchema = Joi.object({
-  _id: Joi.objectId().optional(),
+  _id: joiObjectId.optional(),
   name: Joi.string().optional(),
   date: Joi.date().allow(null).optional(),
   isOwnLogistic: Joi.boolean().optional(),
@@ -67,8 +67,8 @@ const orderDeliverySchema = Joi.object({
 }).required();
 
 const orderSchema = Joi.object({
-  customer: Joi.objectId().required(),
-  partner: Joi.objectId().optional(),
+  customer: joiObjectId.required(),
+  partner: joiObjectId.optional(),
   isBudget: Joi.boolean().optional(),
   cart: orderCartSchema,
   delivery: orderDeliverySchema,
@@ -117,7 +117,7 @@ const confirmOrderSchema = Joi.object({
 });
 
 const updateRoadmapSchema = Joi.object({
-  roadmap: Joi.objectId().required(),
+  roadmap: joiObjectId.required(),
 });
 
 const patchOrderSchema = Joi.object({

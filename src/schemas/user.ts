@@ -1,4 +1,4 @@
-import * as Joi from '@hapi/joi';
+import Joi from '@hapi/joi';
 
 const idSchema = Joi.object({
   id: Joi.string().length(24).required(),

@@ -3,6 +3,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import * as OriginalJoi from '@hapi/joi';
 
+// @ts-ignore
 import objectId from 'joi-objectid';
 
 const Joi = OriginalJoi.extend(objectId);
