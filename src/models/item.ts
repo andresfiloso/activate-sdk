@@ -1,5 +1,5 @@
 import CONFIG from '../config/index';
-import { ItemData, Margin } from '../types';
+import { ItemData, Margin } from '../@types';
 import { round } from '../helpers';
 
 const { WEIGHT, UNITY } = CONFIG.PRODUCT.UNITS;

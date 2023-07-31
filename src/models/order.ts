@@ -1,5 +1,5 @@
 import { sum } from '../helpers';
-import { Cart, OrderT } from '../types';
+import { Cart, OrderT } from '../@types';
 class Order {
   private cart;
   private state;

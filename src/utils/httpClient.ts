@@ -2,7 +2,12 @@ import axios from 'axios';
 
 const DEFAULT_TIMEOUT = 1500;
 
-import { RequestData, RequestParams, RequestHeaders, Response } from '../types';
+import {
+  RequestData,
+  RequestParams,
+  RequestHeaders,
+  Response,
+} from '../@types';
 
 interface RequestOptions {
   data?: RequestData;

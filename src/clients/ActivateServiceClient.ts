@@ -3,7 +3,7 @@ import {
   RequestParams,
   Response,
   ActivateServiceClientOptions,
-} from '../types';
+} from '../@types';
 import HTTPClient from '../utils/httpClient';
 class ActivateServiceClient {
   private client;

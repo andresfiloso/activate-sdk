@@ -1,5 +1,5 @@
 import { sum } from '../helpers';
-import { ItemData } from '../types';
+import { ItemData } from '../@types';
 import Item from './item';
 
 const ORDER_CART_TYPE = 'order';
