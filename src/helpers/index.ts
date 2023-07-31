@@ -1,9 +1,7 @@
-const constants = {
-  UNITY: 'UNITY',
-  WEIGHT: 'WEIGHT',
-};
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+import CONFIG from '../config/index';
 
-const { UNITY, WEIGHT } = constants;
+const { WEIGHT, UNITY } = CONFIG.PRODUCT.UNITS;
 
 const isUnity = (unit: string): boolean => unit === UNITY;
 const isWeight = (unit: string): boolean => unit === WEIGHT;
@@ -28,7 +26,36 @@ const calculateUnitCost = (
     return acc;
   }, taxBase);
 
+const round = (value: number): number => {
+  return Number(value.toFixed(2));
+};
+
+const sum = (
+  array: any[],
+  key?: string | number,
+  fn?: (element: any, ...args: any[]) => any,
+  ...args: any[]
+): number => {
+  let acc = 0;
+  for (const curr of array) {
+    const element = key ? curr[key] : curr;
+    const value = fn ? fn(element, ...args) : element;
+    acc += value || 0;
+  }
+  return acc;
+};
+
+export {
+  sum,
+  round,
+  isUnity,
+  isWeight,
+  calculateMixedUnitCost,
+  calculateUnitCost,
+};
 export default {
+  sum,
+  round,
   isUnity,
   isWeight,
   calculateMixedUnitCost,
