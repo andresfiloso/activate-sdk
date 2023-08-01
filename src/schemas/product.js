@@ -1,34 +1,54 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import * as OriginalJoi from '@hapi/joi';
-
-// @ts-ignore
-import objectId from 'joi-objectid';
-
-const Joi = OriginalJoi.extend(objectId);
+const Joi = require('@hapi/joi');
+Joi.objectId = require('joi-objectid')(Joi);
 
 const idSchema = Joi.object({
-  id: Joi.string().length(24).required(),
+  id: Joi.string()
+    .length(24)
+    .required(),
 });
 
 const getProductSchema = Joi.object({
-  name: Joi.string().min(1).max(100).optional().allow(''),
-  query: Joi.string().min(1).max(100).optional().allow(''),
+  name: Joi.string()
+    .min(1)
+    .max(100)
+    .optional()
+    .allow(''),
+  query: Joi.string()
+    .min(1)
+    .max(100)
+    .optional()
+    .allow(''),
   provider: Joi.objectId().optional(),
   category: Joi.objectId().optional(),
-  unit: Joi.string().min(1).max(100).optional().allow(''),
-  catalog: Joi.boolean().valid(true, false).optional(),
-  status: Joi.boolean().valid(true, false).optional(),
-  page: Joi.number().optional().default(1),
-  limit: Joi.number().optional().default(20),
+  unit: Joi.string()
+    .min(1)
+    .max(100)
+    .optional()
+    .allow(''),
+  catalog: Joi.boolean()
+    .valid(true, false)
+    .optional(),
+  status: Joi.boolean()
+    .valid(true, false)
+    .optional(),
+  page: Joi.number()
+    .optional()
+    .default(1),
+  limit: Joi.number()
+    .optional()
+    .default(20),
 });
 
 const newProductSchema = Joi.object({
-  name: Joi.string().min(1).max(100).required(),
+  name: Joi.string()
+    .min(1)
+    .max(100)
+    .required(),
   provider: Joi.objectId().required(),
   category: Joi.objectId().required(),
-  unit: Joi.string().valid('WEIGHT', 'UNITY').required(),
+  unit: Joi.string()
+    .valid('WEIGHT', 'UNITY')
+    .required(),
   unitCost: Joi.number().optional(),
   defaultMargin: Joi.number().optional(),
   taxBase: Joi.number().optional(),
@@ -49,7 +69,9 @@ const newProductSchema = Joi.object({
       })
     ),
   mixed: Joi.boolean().optional(),
-  tags: Joi.array().items(Joi.number()).optional(),
+  tags: Joi.array()
+    .items(Joi.number())
+    .optional(),
   components: Joi.alternatives().conditional('mixed', [
     {
       is: true,
@@ -71,18 +93,34 @@ const newProductSchema = Joi.object({
     theoretical: Joi.number().optional(),
     critical: Joi.number().optional(),
   }).optional(),
-  title: Joi.string().min(1).max(100).optional(),
-  subtitle: Joi.string().min(1).max(255).optional(),
-  description: Joi.string().min(1).max(255).optional(),
-  imageUrl: Joi.string().min(1).optional(),
+  title: Joi.string()
+    .min(1)
+    .max(100)
+    .optional(),
+  subtitle: Joi.string()
+    .min(1)
+    .max(255)
+    .optional(),
+  description: Joi.string()
+    .min(1)
+    .max(255)
+    .optional(),
+  imageUrl: Joi.string()
+    .min(1)
+    .optional(),
   options: Joi.object().optional(),
 });
 
 const updateProductSchema = Joi.object({
-  name: Joi.string().min(1).max(100).optional(),
+  name: Joi.string()
+    .min(1)
+    .max(100)
+    .optional(),
   provider: Joi.objectId().optional(),
   category: Joi.objectId().optional(),
-  unit: Joi.string().valid('WEIGHT', 'UNITY').optional(),
+  unit: Joi.string()
+    .valid('WEIGHT', 'UNITY')
+    .optional(),
   unitCost: Joi.number().optional(),
   defaultMargin: Joi.number().optional(),
   taxBase: Joi.number().optional(),
@@ -101,11 +139,24 @@ const updateProductSchema = Joi.object({
   catalog: Joi.boolean().optional(),
   mixed: Joi.boolean().optional(),
   components: Joi.array().optional(),
-  tags: Joi.array().items(Joi.number()).optional(),
-  title: Joi.string().min(1).max(100).optional(),
-  subtitle: Joi.string().min(1).max(255).optional(),
-  description: Joi.string().min(1).max(255).optional(),
-  imageUrl: Joi.string().min(1).optional(),
+  tags: Joi.array()
+    .items(Joi.number())
+    .optional(),
+  title: Joi.string()
+    .min(1)
+    .max(100)
+    .optional(),
+  subtitle: Joi.string()
+    .min(1)
+    .max(255)
+    .optional(),
+  description: Joi.string()
+    .min(1)
+    .max(255)
+    .optional(),
+  imageUrl: Joi.string()
+    .min(1)
+    .optional(),
   options: Joi.object().optional(),
 });
 
@@ -122,7 +173,7 @@ const forceAdjustmentSchema = Joi.object({
   theoretical: Joi.number().optional(),
 });
 
-export {
+module.exports = {
   idSchema,
   getProductSchema,
   newProductSchema,
