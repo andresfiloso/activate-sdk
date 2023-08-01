@@ -1,6 +1,6 @@
 {
   "name": "activate-sdk",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Activate Software Development Kit",
   "main": "./lib/index.js",
   "files": [
